@@ -11,7 +11,8 @@ resource "aws_lb" "scada_lb" {
     aws_subnet.publica_c.id
   ]
 
-  enable_deletion_protection = true
+
+  enable_deletion_protection = false
 
   tags = {
     Name = "SCADA LB"

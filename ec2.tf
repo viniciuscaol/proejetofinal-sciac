@@ -1,7 +1,7 @@
 # EC2 WebApp
 resource "aws_instance" "webapp_a" {
-  ami             = "ami-06b21ccaeff8cd686"
-  instance_type   = "t2.micro"
+  ami             = var.ec2_ami
+  instance_type   = var.instance_type
   subnet_id       = aws_subnet.publica_a.id
   security_groups = [aws_security_group.http_sg.id]
 
@@ -11,8 +11,8 @@ resource "aws_instance" "webapp_a" {
 }
 
 resource "aws_instance" "webapp_b" {
-  ami             = "ami-06b21ccaeff8cd686"
-  instance_type   = "t2.micro"
+  ami             = var.ec2_ami
+  instance_type   = var.instance_type
   subnet_id       = aws_subnet.publica_b.id
   security_groups = [aws_security_group.http_sg.id]
 
@@ -22,8 +22,8 @@ resource "aws_instance" "webapp_b" {
 }
 
 resource "aws_instance" "webapp_c" {
-  ami             = "ami-06b21ccaeff8cd686"
-  instance_type   = "t2.micro"
+  ami             = var.ec2_ami
+  instance_type   = var.instance_type
   subnet_id       = aws_subnet.publica_c.id
   security_groups = [aws_security_group.http_sg.id]
 

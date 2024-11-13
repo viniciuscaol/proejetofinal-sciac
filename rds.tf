@@ -17,7 +17,7 @@ resource "aws_db_subnet_group" "scdbsubgroup" {
 resource "aws_rds_cluster" "scada_rds" {
   cluster_identifier        = "scadadf-cluster"
   engine                    = "mysql"
-  availability_zones        = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  availability_zones        = var.availability_zone[*]
   database_name             = "scada_db"
   master_username           = "scada_user"
   master_password           = "scada_password"
@@ -27,6 +27,7 @@ resource "aws_rds_cluster" "scada_rds" {
   storage_type              = "io1"
   allocated_storage         = 400
   iops                      = 3000
+  deletion_protection = false
 
   tags = {
     Name = "SC ADA RDS"

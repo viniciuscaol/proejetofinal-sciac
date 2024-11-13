@@ -4,7 +4,7 @@ resource "aws_route_table" "sc_rotapublica" {
   vpc_id = aws_vpc.scpf_vpc.id
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc-cidr
     gateway_id = "local"
   }
 
@@ -44,7 +44,7 @@ resource "aws_route_table" "scrotaprivada_a" {
   vpc_id = aws_vpc.scpf_vpc.id
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc-cidr
     gateway_id = "local"
   }
 
@@ -62,7 +62,7 @@ resource "aws_route_table" "scrotaprivada_b" {
   vpc_id = aws_vpc.scpf_vpc.id
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc-cidr
     gateway_id = "local"
   }
 
@@ -80,7 +80,7 @@ resource "aws_route_table" "scrotaprivada_c" {
   vpc_id = aws_vpc.scpf_vpc.id
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc-cidr
     gateway_id = "local"
   }
 
@@ -115,7 +115,7 @@ resource "aws_route_table" "rotards" {
   vpc_id = aws_vpc.scpf_vpc.id
 
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc-cidr
     gateway_id = "local"
   }
 

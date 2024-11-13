@@ -77,4 +77,4 @@ A estrutura do projeto em Terraform foi dividida em arquivos módulos para facil
 Contribuições são bem-vindas! Por favor, abra um *pull request* ou relate problemas na seção de *issues*.
 
 ## Licença
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.

@@ -4,7 +4,7 @@ resource "aws_lb" "scada_lb" {
   name               = "scada-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.scada_sgrds.id]
+  security_groups    = [aws_security_group.alb_sg.id]
   subnets = [
     aws_subnet.publica_a.id,
     aws_subnet.publica_b.id,

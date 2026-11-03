@@ -22,3 +22,9 @@ variable "instance_type" {
   default = "t2.micro"
   type    = string
 }
+
+variable "db_master_password" {
+  description = "Senha administrativa do banco de dados."
+  type        = string
+  sensitive   = true
+}

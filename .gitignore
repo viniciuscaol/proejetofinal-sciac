@@ -27,3 +27,11 @@ planfile
 # Arquivos de credenciais e de configuração local da AWS CLI
 .aws/credentials
 .aws/config
+
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+crash.log

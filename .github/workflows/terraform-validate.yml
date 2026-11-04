@@ -1,0 +1,49 @@
+name: Terraform Validate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validar infraestrutura
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      TF_IN_AUTOMATION: "true"
+      TF_INPUT: "false"
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Ler versao do Terraform
+        shell: bash
+        run: |
+          version="$(tr -d '\r\n' < .terraform-version)"
+          printf 'TF_VERSION=%s\n' "$version" >> "$GITHUB_ENV"
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+          terraform_wrapper: false
+
+      - name: Conferir formatacao
+        run: terraform fmt -check -recursive
+
+      - name: Conferir sintaxe do bootstrap
+        run: bash -n scripts/bootstrap.sh
+
+      - name: Inicializar sem backend remoto
+        run: terraform init -backend=false -lockfile=readonly
+
+      - name: Validar configuracao
+        run: terraform validate

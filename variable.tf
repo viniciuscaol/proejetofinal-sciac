@@ -13,11 +13,6 @@ variable "availability_zone" {
   type    = list(string)
 }
 
-variable "ec2_ami" {
-  default = "ami-06b21ccaeff8cd686"
-  type    = string
-}
-
 variable "instance_type" {
   default = "t2.micro"
   type    = string

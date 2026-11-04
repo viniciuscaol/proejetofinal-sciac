@@ -49,8 +49,8 @@ resource "aws_route_table" "scrotaprivada_a" {
   }
 
   route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.scpf_natgw_a.id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.scpf_natgw_a.id
   }
 
   tags = {
@@ -67,8 +67,8 @@ resource "aws_route_table" "scrotaprivada_b" {
   }
 
   route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.scpf_natgw_b.id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.scpf_natgw_b.id
   }
 
   tags = {
@@ -85,8 +85,8 @@ resource "aws_route_table" "scrotaprivada_c" {
   }
 
   route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.scpf_natgw_c.id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.scpf_natgw_c.id
   }
 
   tags = {

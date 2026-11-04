@@ -14,22 +14,34 @@ resource "aws_db_subnet_group" "scdbsubgroup" {
 
 # RDS Projeto Final ADA
 
-resource "aws_rds_cluster" "scada_rds" {
-  cluster_identifier        = "scadadf-cluster"
-  engine                    = "mysql"
-  availability_zones        = var.availability_zone[*]
-  database_name             = "scada_db"
-  master_username           = "scada_user"
-  master_password           = var.db_master_password
-  db_subnet_group_name      = aws_db_subnet_group.scdbsubgroup.name
-  vpc_security_group_ids    = [aws_security_group.scada_sgrds.id]
-  db_cluster_instance_class = "db.r6gd.xlarge"
-  storage_type              = "io1"
-  allocated_storage         = 400
-  iops                      = 3000
-  deletion_protection       = false
+resource "aws_db_instance" "scada_mysql" {
+  identifier = "scada-mysql"
+
+  engine         = "mysql"
+  instance_class = "db.t3.micro"
+
+  allocated_storage = 20
+  storage_type      = "gp3"
+  storage_encrypted = true
+
+  db_name                     = "scada_db"
+  username                    = "scada_admin"
+  manage_master_user_password = true
+
+  db_subnet_group_name   = aws_db_subnet_group.scdbsubgroup.name
+  vpc_security_group_ids = [aws_security_group.scada_sgrds.id]
+
+  publicly_accessible = false
+  multi_az            = false
+
+  backup_retention_period    = 1
+  auto_minor_version_upgrade = true
+
+  # Configuração de laboratório:
+  deletion_protection = false
+  skip_final_snapshot = true
 
   tags = {
-    Name = "SC ADA RDS"
+    Name = "SCADA MySQL"
   }
 }
